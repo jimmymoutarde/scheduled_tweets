@@ -1,28 +1,30 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
-<nav class="bg-gray-800">
+<nav class="bg-gray-800 text-gray-300">
   <div class="mx-auto px-2 sm:px-6 lg:px-8">
     <div class="relative flex items-center justify-between h-16">
       <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
         <%= link_to root_path, class: "flex-shrink-0 flex items-center" do %>
-          <img class="block lg:hidden h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow">
-          <img class="hidden lg:block h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg" alt="Workflow">
+        <img class="block lg:hidden h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow">
+        <img class="hidden lg:block h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg" alt="Workflow">
         <% end %>
         <div class="hidden sm:block sm:ml-6">
           <div class="flex space-x-4">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <%= link_to "Home", root_path, class:"text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-m font-medium"%>
-            <%= link_to "About", about_path, class:"text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-m font-medium"%>
+            <%= link_to "Home", root_path, class:"hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-m font-medium"%>
+            <%= link_to "About", about_path, class:"hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-m font-medium"%>
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Mobile menu, show/hide based on menu state. -->
-    <div class="sm:hidden" id="mobile-menu">
-      <div class="px-2 pt-2 pb-3 space-y-1">
-        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-        <%= link_to "Home", root_path, class:"text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-m font-medium"%>
-        <%= link_to "About", about_path, class:"text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-m font-medium"%>
+      <div class="hidden sm:block sm:ml-6">
+        <div class="flex space-x-4 items-center">
+          <% if Current.user %>
+          <%= link_to Current.user.email, edit_password_path, class:"underline hover:text-white" %>
+          <%= button_to "Logout", logout_path, method: :delete, class: "flex items-center justify-center ml-5 px-2 py-1 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-2 md:text-m md:px-5" %>
+          <% else %>
+          <%= link_to "Login", sign_in_path, class:"hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-m font-medium" %>
+          <%= link_to "Sign Up", sign_up_path, class:"flex items-center justify-center px-2 py-1 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-2 md:text-m md:px-5" %>
+          <% end %>
+        </div>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
